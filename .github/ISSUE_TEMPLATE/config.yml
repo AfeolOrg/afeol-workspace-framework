@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Architecture Discussions
+    url: https://github.com/AfeolOrg/afeol-workspace-framework/discussions
+    about: Ask architectural questions, propose ideas, or request clarification.
+
+  - name: Workspace Foundation
+    url: https://github.com/AfeolOrg/afeol-workspace-framework/blob/main/docs/foundation/workspace-foundation.md
+    about: Read the Workspace Foundation before opening a specification issue.
