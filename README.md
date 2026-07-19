@@ -1,183 +1,23 @@
 # AFEOL Workspace Framework
 
-Version
+A technology-neutral Workspace Framework for building consistent, secure, and maintainable applications.
 
-```text
-2026.1
-```
-
-Status
-
-```text
-FOUNDATION DRAFT
-```
-
-License
-
-```text
-Mozilla Public License 2.0 (MPL-2.0)
-```
+The AFEOL Workspace Framework defines a standardized architectural boundary between an application and a Workspace Runtime. It separates business logic from presentation behavior while remaining independent of programming language, UI toolkit, transport protocol, and deployment environment.
 
 ---
 
-# Purpose
-
-The AFEOL Workspace Framework defines a standardized, application-independent Workspace Runtime.
-
-The Workspace Runtime validates, renders, and manages application workspaces through a common Workspace Standard.
-
-The framework defines architecture and behavior.
-
-It does not define business logic.
-
----
-
-# Vision
-
-A compatible application should be able to describe its user interface through a standard Workspace Contract.
-
-The Workspace Runtime validates the submitted definition, renders the Workspace, and reports structured events and diagnostics back to the application.
-
----
-
-# Core Architecture
-
-```text
-Application
-
-↓
-
-Workspace Contract
-
-↓
-
-Workspace Runtime
-
-↓
-
-Rendered Workspace
-```
-
-Communication between the application and the Workspace Runtime is duplex.
-
----
-
-# Workspace Runtime Responsibilities
-
-The Workspace Runtime is responsible for:
-
-- validating Workspace definitions;
-- rendering the Workspace;
-- managing layout;
-- managing Dock behavior;
-- managing Canvas behavior;
-- dispatching Workspace events;
-- enforcing Workspace constraints;
-- reporting structured diagnostics.
-
----
-
-# Application Responsibilities
-
-The application is responsible for:
-
-- business logic;
-- user identity;
-- tenant identity;
-- project state;
-- persistence;
-- user preferences;
-- application configuration;
-- authorization;
-- diagnostics history.
-
----
-
-# Stateless Runtime Principle
-
-The Workspace Runtime is stateless outside the lifetime of a running Workspace instance.
-
-Temporary in-memory state is permitted while a Workspace instance is active.
-
-Persistent application state is never owned by the Runtime.
-
----
-
-# Normative Rule
-
-> **THE WORKSPACE RUNTIME SHALL NEVER PERSIST USER-SPECIFIC, TENANT-SPECIFIC, PROJECT-SPECIFIC, APPLICATION-SPECIFIC, BUSINESS-SPECIFIC, OR CROSS-SESSION STATE.**
-
-Persistence is exclusively the responsibility of the application implementing the Workspace Standard.
-
----
-
-# Canvas Principle
-
-The Canvas is the primary working area.
-
-The Dock follows the active Canvas context.
-
-The Canvas never becomes subordinate to the Dock.
-
----
-
-# Dock Principle
-
-The Dock is a generic Workspace component.
-
-It is not application-specific.
-
-The Runtime owns Dock behavior.
-
-Applications own Dock content.
-
----
-
-# Floating Dock
-
-The Workspace Runtime may support multiple Dock modes.
-
-Typical supported modes are:
-
-```text
-LEFT
-
-RIGHT
-
-FLOATING
-
-HIDDEN
-```
-
-The Runtime validates Dock movement.
-
-The application decides whether the resulting Dock state should be persisted.
-
----
-
-# Diagnostics
-
-The Workspace Runtime reports structured diagnostics.
-
-Diagnostics should contain sufficient information for developers to identify, understand, and resolve validation failures.
-
-The Runtime reports current diagnostics only.
-
-Applications may maintain temporary diagnostic history.
-
----
-
-# Foundation
-
-The architectural foundation of the Workspace Framework is defined in:
-
-```text
-docs/foundation/workspace-foundation.md
-```
-
-Derived specifications extend the Foundation.
-
-They shall never contradict it.
+# Goals
+
+The framework is designed around a small number of long-term architectural principles:
+
+- Application-owned authoritative state
+- Runtime-owned presentation behavior
+- Technology neutrality
+- Security by architectural design
+- Deterministic behavior
+- Stateless Runtime
+- Long-term compatibility
+- Open specifications
 
 ---
 
@@ -185,54 +25,124 @@ They shall never contradict it.
 
 ```text
 afeol-workspace-framework/
-
-├── README.md
-├── LICENSE
+│
 ├── CHANGELOG.md
-├── .gitignore
+├── LICENSE
+├── README.md
+│
 └── docs/
-    ├── foundation/
-    └── specifications/
+    └── foundation/
+        ├── workspace-foundation.md
+        └── workspace-draft-completion-rule.md
+```
+
+Additional specifications will be added as the framework evolves.
+
+---
+
+# Specifications
+
+Current specifications:
+
+| Document | Status |
+|----------|--------|
+| Workspace Foundation | FOUNDATION |
+
+Future specifications will include:
+
+- Workspace Security Foundation
+- Workspace Contract Specification
+- Workspace Protocol Specification
+- Workspace Diagnostics Specification
+- Workspace Runtime Profile
+- Workspace Secure Rendering Specification
+- Workspace Resource Governance Specification
+- Workspace Extension Isolation Specification
+- Reference Security Tests
+
+---
+
+# Getting Started
+
+The recommended reading order is:
+
+```text
+README
+    │
+    ▼
+Workspace Foundation
+    │
+    ▼
+Derived Specifications
+    │
+    ▼
+Reference Tests
+    │
+    ▼
+Reference Implementations
+```
+
+The Workspace Foundation is the normative document that defines the architectural rules of the framework.
+
+Location:
+
+```text
+docs/foundation/workspace-foundation.md
 ```
 
 ---
 
-# Development Principle
+# Design Principles
 
-The Workspace Framework evolves from proven application behavior.
+The framework follows several fundamental principles:
+
+- Simplicity over unnecessary complexity
+- Explicit contracts over implicit behavior
+- Deterministic execution
+- Security through architecture
+- Separation of responsibilities
+- Stable foundations with independently evolving specifications
+
+---
+
+# Versioning
+
+The repository follows Semantic Versioning.
+
+Current release:
 
 ```text
-Foundation
-
-↓
-
-Implementation
-
-↓
-
-Observation
-
-↓
-
-Refinement
-
-↓
-
-Specification
-
-↓
-
-Lock
+v1.0.0
 ```
 
-The Standard follows successful implementations.
+Foundation documents evolve slowly.
 
-Implementations do not redefine the Standard.
+Derived specifications evolve independently.
+
+Reference implementations may evolve more rapidly.
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+Please read the project documentation before proposing architectural changes.
+
+Normative changes should preserve compatibility whenever reasonably possible.
+
+Contribution guidelines will be published in `CONTRIBUTING.md`.
 
 ---
 
 # License
 
-This repository is licensed under the Mozilla Public License Version 2.0 (MPL-2.0).
+Repository source files are licensed under the Mozilla Public License 2.0.
 
-See the `LICENSE` file for the complete license text.
+Documentation may define its own license where explicitly stated.
+
+See:
+
+```text
+LICENSE
+```
